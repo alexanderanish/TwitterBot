@@ -1,0 +1,8 @@
+# Ignore Mac system files
+.DS_store
+
+#Ignore files related to credentials and API keys
+.env
+
+#python
+__pycache__/
