@@ -1,11 +1,11 @@
 #import latestTweet module
-##from latestTweet import getLatestTweet
+from latestTweet import getLatestTweet
 
 #import delete tweet module
-##from deleteTweet import deleteLastTweet
+from deleteTweet import deleteLastTweet
 
 #import post tweet module
-##from tweet import tweet
+from tweet import tweet
 
 import datetime
 
@@ -19,40 +19,30 @@ from marketCap import marketCap
 
 from db import get_database
 
+from credential import username
 
 
 
-#tweet to delete
-##tweetText="Video here:"
+def runTweet(tweetInput, username, tweetText=""):
 
-#text to tweet
-##tweetInput="""The best stock & crypto sentiment. Join Wall Street Mooners! Video here: 
-##http://youtu.be/tJt-1H6apd8
+    #fetch latest tweet and delete
+    print("finding last tweet")
 
-##http://wallstreetmooners.com
+    #extrating last matching tweet
+    Ids=getLatestTweet(username, tweetText)
 
-##$AAPL $AMZN $NVDA $NIO $TSLA $GME $AMC  #cryptocurrecy #Stocks $BTC $ETH .xyz"""
+    print("deleting last tweet")
 
-#account to tweet from
-##username="antalexaa"
+    deleteLastTweet(Ids[0])
 
-#fetch latest tweet and delete
-##print("finding last tweet")
+    print("posting new tweet")
 
-#extrating last matching tweet
-##Ids=getLatestTweet(username, tweetText)
+    #post latest tweet
 
-##print("deleting last tweet")
+    tweet(tweetInput)
 
-##deleteLastTweet(Ids[0])
+    print("successfully posted new tweet")
 
-##print("posting new tweet")
-
-#post latest tweet
-
-##tweet(tweetInput)
-
-##print("successfully posted new tweet")
 def getTodayTweets():
 
     tday = datetime.datetime.now()
@@ -131,13 +121,27 @@ def insertTickerDB(data):
 
     print("inserted into db")
 
-#print(tickerList)
+#text to tweet
+##tweetInput="""The best stock & crypto sentiment. Join Wall Street Mooners! Video here: 
+##http://youtu.be/tJt-1H6apd8
 
-#data=getListFromFile()
+##http://wallstreetmooners.com
 
-#tickerCap = marketCap(data)
+##$AAPL $AMZN $NVDA $NIO $TSLA $GME $AMC  #cryptocurrecy #Stocks $BTC $ETH .xyz"""
 
-#insertTickerDB(tickerCap)
+#tweet to delete
+#tweetText="Video here:"
+
+
+##runTweet(tweetInput, username, tweetText)
+
+##print(tickerList)
+
+##data=getListFromFile()
+
+##tickerCap = marketCap(data)
+
+##insertTickerDB(tickerCap)
 
 create_poll(getTodayTweets())
 
